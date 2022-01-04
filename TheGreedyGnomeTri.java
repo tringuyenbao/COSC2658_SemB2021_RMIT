@@ -35,7 +35,8 @@ public class TheGreedyGnomeTri {
     // display mine map
     public void displayMap(String[][] map) {
         for (String[] rows : map) {
-            for (String col : rows) System.out.print(col + " ");
+            for (String col : rows)
+                System.out.print(col + " ");
             System.out.println();
         }
     }
@@ -43,13 +44,8 @@ public class TheGreedyGnomeTri {
     private void init() {
         this.pathTo = new String[row_count][col_count];
         this.goldPath = new int[row_count][col_count];
-
-        for (String[] rows : this.pathTo) {
-            Arrays.fill(rows, "");
-        }
-        for (int[] rows : this.goldPath) {
-            Arrays.fill(rows, 0);
-        }
+        for (String[] rows : this.pathTo) Arrays.fill(rows, "");
+        for (int[] rows : this.goldPath) Arrays.fill(rows, 0);
     }
 
     // constructor for testing
@@ -230,7 +226,7 @@ public class TheGreedyGnomeTri {
         // get start time to calculate processing time
         long start = System.nanoTime();
 
-        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
         TheGreedyGnomeTri gnome = new TheGreedyGnomeTri("map1.txt");
         gnome.getBestPath();
@@ -238,10 +234,11 @@ public class TheGreedyGnomeTri {
         // get finish time and calculate processing time
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
-        System.out.println("Processing time: " + timeElapsed/1000000 + " milliseconds.");
+        System.out.println("Processing time: " + timeElapsed + " nanoseconds.");
+//        System.out.println("Processing time: " + timeElapsed/1000000 + " milliseconds.");
 
-        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
 
         System.out.printf("Memory used: %d kB\n", actualMemUsed/1000);
     }
