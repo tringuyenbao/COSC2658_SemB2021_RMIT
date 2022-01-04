@@ -15,6 +15,7 @@ public class TheGreedyGnomeTri {
     private String[][] map;
     private int row_count;
     private int col_count;
+    private boolean hasGold;
 
     // initialize data structures to record the value
     private String[][] pathTo;
@@ -30,6 +31,10 @@ public class TheGreedyGnomeTri {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static boolean isInteger(char c) {
+        return c >= '0' && c <= '9';
     }
 
     // display mine map
@@ -59,6 +64,12 @@ public class TheGreedyGnomeTri {
     // actual constructor
     public TheGreedyGnomeTri(String filename) {
         this.readMap(filename);
+        if (this.hasGold) {
+            this.init();
+            this.getBestPath();
+        } else {
+            System.out.println("No gold found in map!");
+        }
     }
 
     // open mine map file, validate the data, then create array of the map
@@ -70,24 +81,26 @@ public class TheGreedyGnomeTri {
             // reads first line
             String row_col = file.nextLine();
             if (!isInteger(row_col.split(" ")[0]) && !isInteger(row_col.split(" ")[1])) {
-                throw new Exception("Invalid row and column values.");
-            } else {
-                this.row_count = Integer.parseInt(row_col.split(" ")[0]);
-                this.col_count = Integer.parseInt(row_col.split(" ")[1]);
-                this.map = new String[this.row_count][this.col_count];
+                System.out.println("Invalid row and column values.");
+                file.close();
+                return;
             }
 
+            this.row_count = Integer.parseInt(row_col.split(" ")[0]);
+            this.col_count = Integer.parseInt(row_col.split(" ")[1]);
+            this.map = new String[this.row_count][this.col_count];
+
+            this.hasGold = false;
             int row = 0;
             while (file.hasNextLine()) {
                 String data = file.nextLine();
                 for (int i = 0; i < data.length(); i++) {
+                    if (isInteger(data.charAt(i))) this.hasGold = true;
                     this.map[row][i] = String.valueOf(data.charAt(i)).toUpperCase();
                 }
                 row++;
             }
             file.close();
-
-            this.init();
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
             e.printStackTrace();
@@ -228,8 +241,12 @@ public class TheGreedyGnomeTri {
 
         long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
-        TheGreedyGnomeTri gnome = new TheGreedyGnomeTri("map1.txt");
-        gnome.getBestPath();
+        try {
+            new TheGreedyGnomeTri("map1.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
 
         // get finish time and calculate processing time
         long finish = System.nanoTime();
