@@ -1,11 +1,11 @@
 // RMIT University Vietnam
 // Course: COSC2658 - Data Structures & Algorithms
-// Semester: 2021B
+// Semester: 2021C
 // Assignment: Group Project
 // Authors: Quach Gia Vi (3757317), Bui Manh Dai Duong (s3757278), Nguyen Bao Tri (s3749560)
 
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
