@@ -92,11 +92,11 @@ public class TheGreedyGnomeTri {
 
             this.hasGold = false;
             int row = 0;
-            while (file.hasNextLine()) {
-                String data = file.nextLine();
-                for (int i = 0; i < data.length(); i++) {
-                    if (isInteger(data.charAt(i))) this.hasGold = true;
-                    this.map[row][i] = String.valueOf(data.charAt(i)).toUpperCase();
+            while (file.hasNext()) {
+                String[] data = file.nextLine().split(" ");
+                for (int i = 0; i < data.length; i++) {
+                    if (isInteger(data[i])) this.hasGold = true;
+                    this.map[row][i] = String.valueOf(data[i]).toUpperCase();
                 }
                 row++;
             }
