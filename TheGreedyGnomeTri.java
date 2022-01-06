@@ -235,14 +235,27 @@ public class TheGreedyGnomeTri {
     }
 
 
-    public static void main(String[] arg) {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+           throw new IllegalArgumentException("Require 1 argument.");
+        }
+
+        String filename = args[0];
+
+        // check if file extension is .txt
+        if ((filename.charAt(filename.length() - 1) != 't' || filename.charAt(filename.length() - 1) != 'T') 
+        && (filename.charAt(filename.length() - 2) != 'x' || filename.charAt(filename.length() - 1) != 'X') 
+        && (filename.charAt(filename.length() - 3) != 't' || filename.charAt(filename.length() - 1) != 'T') 
+        && filename.charAt(filename.length() - 4) != '.') {
+            throw new IllegalArgumentException("Invalid file extension.");
+        }
+
         // get start time to calculate processing time
         long start = System.nanoTime();
-
         long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-
         try {
-            new TheGreedyGnomeTri("maps/2_21.txt");
+            new TheGreedyGnomeTri(filename);
+//            new TheGreedyGnomeTri("maps/2_21.txt");
 //            new TheGreedyGnomeTri("maps/3_3.txt");
 //            new TheGreedyGnomeTri("maps/10_10.txt");
 //            new TheGreedyGnomeTri("maps/12_23.txt");
@@ -260,6 +273,7 @@ public class TheGreedyGnomeTri {
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
         System.out.println("Processing time: " + timeElapsed + " nanoseconds.");
+//        System.out.println("Processing time: " + timeElapsed/1000 + " microseconds.");
 //        System.out.println("Processing time: " + timeElapsed/1000000 + " milliseconds.");
 
         long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
