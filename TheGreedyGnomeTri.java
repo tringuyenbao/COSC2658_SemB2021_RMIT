@@ -242,7 +242,15 @@ public class TheGreedyGnomeTri {
         long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
         try {
-            new TheGreedyGnomeTri("map1.txt");
+            new TheGreedyGnomeTri("maps/2_21.txt");
+//            new TheGreedyGnomeTri("maps/3_3.txt");
+//            new TheGreedyGnomeTri("maps/10_10.txt");
+//            new TheGreedyGnomeTri("maps/12_23.txt");
+//            new TheGreedyGnomeTri("maps/17_1.txt");
+//            new TheGreedyGnomeTri("maps/19_13.txt");
+//            new TheGreedyGnomeTri("maps/25_8.txt");
+//            new TheGreedyGnomeTri("maps/26_26.txt");
+//            new TheGreedyGnomeTri("maps/27_27.txt");
         } catch (Exception e) {
             e.printStackTrace();
             return;
