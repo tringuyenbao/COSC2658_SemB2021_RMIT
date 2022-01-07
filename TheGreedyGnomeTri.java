@@ -75,6 +75,7 @@ public class TheGreedyGnomeTri {
             String row_col = file.nextLine();
             if (!isInteger(row_col.split(" ")[0]) && !isInteger(row_col.split(" ")[1])) {
                 file.close();
+                System.out.println("Invalid row and column values.");
                 throw new Exception("Invalid row and column values.");
             } else {
                 this.row_count = Integer.parseInt(row_col.split(" ")[0]);
