@@ -13,8 +13,8 @@ import java.util.Collections;
 
 public class TheGreedyGnomeTri {
     private String[][] map;
-    private int row_count;
-    private int col_count;
+    private int rowCount;
+    private int colCount;
 
     // initialize data structures to record the value
     private String[][] pathTo;
@@ -46,17 +46,17 @@ public class TheGreedyGnomeTri {
     }
 
     private void init() {
-        this.pathTo = new String[row_count][col_count];
-        this.goldPath = new int[row_count][col_count];
+        this.pathTo = new String[rowCount][colCount];
+        this.goldPath = new int[rowCount][colCount];
         for (String[] rows : this.pathTo) Arrays.fill(rows, "");
         for (int[] rows : this.goldPath) Arrays.fill(rows, 0);
     }
 
 //    // constructor for testing
-//    public TheGreedyGnomeTri(String[][] map, final int row_count, final int col_count) {
+//    public TheGreedyGnomeTri(String[][] map, final int rowCount, final int colCount) {
 //        this.map = map;
-//        this.row_count = row_count;
-//        this.col_count = col_count;
+//        this.rowCount = rowCount;
+//        this.colCount = colCount;
 //        this.init();
 //    }
 
@@ -78,9 +78,9 @@ public class TheGreedyGnomeTri {
                 System.out.println("Invalid row and column values.");
                 throw new Exception("Invalid row and column values.");
             } else {
-                this.row_count = Integer.parseInt(row_col.split(" ")[0]);
-                this.col_count = Integer.parseInt(row_col.split(" ")[1]);
-                this.map = new String[this.row_count][this.col_count];
+                this.rowCount = Integer.parseInt(row_col.split(" ")[0]);
+                this.colCount = Integer.parseInt(row_col.split(" ")[1]);
+                this.map = new String[this.rowCount][this.colCount];
             }
 
             int row = 0;
@@ -107,8 +107,8 @@ public class TheGreedyGnomeTri {
     }
 
     public void getBestPath() {
-        for (int i = 0; i < this.row_count; i++) {
-            for (int j = 0; j < this.col_count; j++) {
+        for (int i = 0; i < this.rowCount; i++) {
+            for (int j = 0; j < this.colCount; j++) {
                 // if the cell is blocked
                 if (this.map[i][j].equals("X")) {
                     this.goldPath[i][j] = -1;
@@ -269,9 +269,9 @@ public class TheGreedyGnomeTri {
         // get finish time and calculate processing time
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
-        System.out.println("Processing time: " + timeElapsed + " nanoseconds.");
+        // System.out.println("Processing time: " + timeElapsed + " nanoseconds.");
 //        System.out.println("Processing time: " + timeElapsed/1000 + " microseconds.");
-//        System.out.println("Processing time: " + timeElapsed/1000000 + " milliseconds.");
+       System.out.println("Processing time: " + timeElapsed/1000000 + " milliseconds.");
 
         long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long actualMemUsed = afterUsedMem - beforeUsedMem;
