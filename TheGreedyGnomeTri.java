@@ -227,6 +227,7 @@ public class TheGreedyGnomeTri {
 
         // get the maximum amount of collectable gold and the shortest way to collect it
         int maxGold = Collections.max(this.recordTable.keySet());
+
         String minPath = this.recordTable.get(maxGold);
         System.out.printf("Steps: %d, gold: %d, path: %s\n", minPath.length(), maxGold, minPath);
     }
