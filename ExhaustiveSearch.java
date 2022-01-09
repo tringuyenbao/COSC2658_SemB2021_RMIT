@@ -618,7 +618,7 @@ public class ExhaustiveSearch {
         
         // no reachable gold locations found, stop program
         if (this.goldLocations.size()  < 1) {
-            System.out.println("No unreachable gold locations, no mining needed.");
+            System.out.println("No reachable gold locations found, no mining needed.");
             return;
         }
 
