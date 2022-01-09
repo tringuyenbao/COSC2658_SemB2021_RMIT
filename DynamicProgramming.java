@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class TheGreedyGnomeTri {
+public class DynamicProgramming {
     private String[][] map;
     private int rowCount;
     private int colCount;
@@ -53,7 +53,7 @@ public class TheGreedyGnomeTri {
     }
 
 //    // constructor for testing
-//    public TheGreedyGnomeTri(String[][] map, final int rowCount, final int colCount) {
+//    public DynamicProgramming(String[][] map, final int rowCount, final int colCount) {
 //        this.map = map;
 //        this.rowCount = rowCount;
 //        this.colCount = colCount;
@@ -61,7 +61,7 @@ public class TheGreedyGnomeTri {
 //    }
 
     // actual constructor
-    public TheGreedyGnomeTri(String filename) {
+    public DynamicProgramming(String filename) {
         this.readMap(filename);
     }
 
@@ -252,16 +252,16 @@ public class TheGreedyGnomeTri {
         long start = System.nanoTime();
         long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         try {
-            new TheGreedyGnomeTri(filename);
-//            new TheGreedyGnomeTri("maps/2_21.txt");
-//            new TheGreedyGnomeTri("maps/3_3.txt");
-//            new TheGreedyGnomeTri("maps/10_10.txt");
-//            new TheGreedyGnomeTri("maps/12_23.txt");
-//            new TheGreedyGnomeTri("maps/17_1.txt");
-//            new TheGreedyGnomeTri("maps/19_13.txt");
-//            new TheGreedyGnomeTri("maps/25_8.txt");
-//            new TheGreedyGnomeTri("maps/26_26.txt");
-//            new TheGreedyGnomeTri("maps/27_27.txt");
+            new DynamicProgramming(filename);
+//            new DynamicProgramming("maps/2_21.txt");
+//            new DynamicProgramming("maps/3_3.txt");
+//            new DynamicProgramming("maps/10_10.txt");
+//            new DynamicProgramming("maps/12_23.txt");
+//            new DynamicProgramming("maps/17_1.txt");
+//            new DynamicProgramming("maps/19_13.txt");
+//            new DynamicProgramming("maps/25_8.txt");
+//            new DynamicProgramming("maps/26_26.txt");
+//            new DynamicProgramming("maps/27_27.txt");
         } catch (Exception e) {
             e.printStackTrace();
             return;

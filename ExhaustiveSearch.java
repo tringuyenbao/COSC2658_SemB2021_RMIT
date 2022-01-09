@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Collections;
 
-public class TheGreedyGnome {
+public class ExhaustiveSearch {
     public int x = 0;
     public int y = 0;
     public int goldGathered = 0;
@@ -86,7 +86,7 @@ public class TheGreedyGnome {
     }
 
 //    // constructor for testing
-//    public TheGreedyGnome(String[][] map, final int rowCount, final int colCount) {
+//    public ExhaustiveSearch(String[][] map, final int rowCount, final int colCount) {
 //        this.map = map;
 //        this.rowCount = rowCount;
 //        this.colCount = colCount;
@@ -95,7 +95,7 @@ public class TheGreedyGnome {
 //    }
 
     // actual constructor
-    public TheGreedyGnome(String filename) {
+    public ExhaustiveSearch(String filename) {
         this.readMap(filename);
     }
 
@@ -120,7 +120,7 @@ public class TheGreedyGnome {
             int row = 0;
             while (file.hasNext()) {
                 String[] data = file.nextLine().split(" ");
-                for (int col = 0; col < data.length; col++) {
+                 for (int col = 0; col < data.length; col++) {
                     this.map[row][col] = String.valueOf(data[col]).toUpperCase();
                 }
                 row++;
@@ -615,7 +615,7 @@ public class TheGreedyGnome {
 //        System.out.println("================");
 //        System.out.println("All reachable gold locations: " + Arrays.deepToString(this.goldLocations.toArray()));
 //        System.out.println("Amount of reachable gold locations: " + this.goldLocations.size());
-
+        
         // no reachable gold locations found, stop program
         if (this.goldLocations.size()  < 1) {
             System.out.println("No unreachable gold locations, no mining needed.");
@@ -709,31 +709,38 @@ public class TheGreedyGnome {
             }
         }
 
-       // System.out.println(possibleGoldPaths);
-        for (GnomePath path : possibleGoldPaths) { //m*n
+        // // Print possible gold paths list for debugging
+        // System.out.println("---------------------");
+        // System.out.println("Possible gold path list size: " + possibleGoldPaths.size());
+        // System.out.println("possibleGoldPaths: ");
+        // for (int i = 0; i < possibleGoldPaths.size(); i++) {
+        //     System.out.println(possibleGoldPaths.get(i));
+        // }
+        // System.out.println("---------------------");
+
+        for (GnomePath path : possibleGoldPaths) {
             ArrayList<GnomePath> tempList = new ArrayList<>();
             GnomePath tempPath = new GnomePath();
-            for (int j = 0; j < path.size(); j++) { //m*n
+            for (int j = 0; j < path.size(); j++) {
                 tempPath.add(path.get(j));
             }
             tempList.add(tempPath);
 
-
             int currentIndex = 0;
-            while (currentIndex != (tempPath.size()-1)) { //m*n
+            while (currentIndex != tempList.size()) {
                 // get the last coordinate in path
                 Coordinate currentCoord = tempList.get(currentIndex).get(tempList.get(currentIndex).size() - 1);
-
+    
                 boolean hasExtraPaths = false;
                 // loop through all paths
-                for (GnomePath possibleGoldPath : possibleGoldPaths) { //m*n
-                    // if last coordinate has more path options,
-                    // add the new coordinate to current path, add that
+                for (GnomePath possibleGoldPath : possibleGoldPaths) {
+                    // if last coordinate has more path options, 
+                    // add the new coordinate to current path, add that 
                     // new path to list, and remove old path from list
                     if (possibleGoldPath.get(0).equals(currentCoord)) {
                         hasExtraPaths = true;
                         GnomePath temp = new GnomePath();
-                        for (int i = 0; i < tempList.get(currentIndex).size(); i++) { //m*n
+                        for (int i = 0; i < tempList.get(currentIndex).size(); i++) {
                             temp.add(tempList.get(currentIndex).get(i));
                         }
                         temp.add(possibleGoldPath.get(1));
@@ -741,6 +748,17 @@ public class TheGreedyGnome {
                     }
                 }
 
+                // // Print possible gold paths list for debugging
+                // System.out.println("---------------------");
+                // System.out.println("tempList size: " + tempList.size());
+                // System.out.println("tempList: ");
+                // for (int i = 0; i < tempList.size(); i++) {
+                //     System.out.println(tempList.get(i));
+                // }
+                // System.out.println("---------------------");
+
+                // if (currentIndex == 5) break;
+    
                 if (hasExtraPaths) tempList.remove(currentIndex);
                 else currentIndex++;
             }
@@ -756,7 +774,7 @@ public class TheGreedyGnome {
 //                {"6", ".", "X"}
 //        };
 //
-//        TheGreedyGnome gnome1 = new TheGreedyGnome(map1, 3, 3);
+//        ExhaustiveSearch gnome1 = new ExhaustiveSearch(map1, 3, 3);
 //        gnome1.displayMap(map1);
 //        gnome1.getBestPath();
 
@@ -767,7 +785,7 @@ public class TheGreedyGnome {
 //                {"6", "8", "."}
 //        };
 //
-//        TheGreedyGnome gnome2 = new TheGreedyGnome(map2, 4, 3);
+//        ExhaustiveSearch gnome2 = new ExhaustiveSearch(map2, 4, 3);
 //        gnome2.displayMap(map2);
 //        gnome2.getBestPath();
 
@@ -778,7 +796,7 @@ public class TheGreedyGnome {
 //                {"6", "X", "."}
 //        };
 //
-//        TheGreedyGnome gnome3 = new TheGreedyGnome(map3, 4, 3);
+//        ExhaustiveSearch gnome3 = new ExhaustiveSearch(map3, 4, 3);
 //        gnome3.displayMap(map3);
 //        gnome3.getBestPath();
 
@@ -790,7 +808,7 @@ public class TheGreedyGnome {
 //                {"12", "X", ".", "X"}
 //        };
 //
-//        TheGreedyGnome gnome4 = new TheGreedyGnome(map4, 4, 4);
+//        ExhaustiveSearch gnome4 = new ExhaustiveSearch(map4, 4, 4);
 //        gnome4.displayMap(map4);
 //        gnome4.getBestPath();
 
@@ -801,11 +819,11 @@ public class TheGreedyGnome {
 //                {"6", "X", ".", "X"}
 //        };
 //
-//        TheGreedyGnome gnome5 = new TheGreedyGnome(map5, 4, 4);
+//        ExhaustiveSearch gnome5 = new ExhaustiveSearch(map5, 4, 4);
 //        gnome5.displayMap(map5);
 //        gnome5.getBestPath();
 
-//        TheGreedyGnome gnome6 = new TheGreedyGnome("map2.txt");
+//        ExhaustiveSearch gnome6 = new ExhaustiveSearch("map2.txt");
 //        gnome6.getBestPath();
 
         if (args.length != 1) {
@@ -826,16 +844,16 @@ public class TheGreedyGnome {
         long start = System.nanoTime();
         long beforeUsedMem=Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         try {
-            new TheGreedyGnome(filename);
-//            new TheGreedyGnome("maps/2_21.txt");
-//            new TheGreedyGnome("maps/3_3.txt");
-//            new TheGreedyGnome("maps/10_10.txt");
-//            new TheGreedyGnome("maps/12_23.txt");
-//            new TheGreedyGnome("maps/17_1.txt");
-//            new TheGreedyGnome("maps/19_13.txt");
-//            new TheGreedyGnome("maps/25_8.txt");
-//            new TheGreedyGnome("maps/26_26.txt");
-//            new TheGreedyGnome("maps/27_27.txt");
+            new ExhaustiveSearch(filename);
+//            new ExhaustiveSearch("maps/2_21.txt");
+//            new ExhaustiveSearch("maps/3_3.txt");
+//            new ExhaustiveSearch("maps/10_10.txt");
+//            new ExhaustiveSearch("maps/12_23.txt");
+//            new ExhaustiveSearch("maps/17_1.txt");
+//            new ExhaustiveSearch("maps/19_13.txt");
+//            new ExhaustiveSearch("maps/25_8.txt");
+//            new ExhaustiveSearch("maps/26_26.txt");
+//            new ExhaustiveSearch("maps/27_27.txt");
         } catch (Exception e) {
             e.printStackTrace();
             return;
