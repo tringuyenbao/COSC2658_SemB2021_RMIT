@@ -80,6 +80,13 @@ public class DynamicProgramming {
             } else {
                 this.rowCount = Integer.parseInt(row_col.split(" ")[0]);
                 this.colCount = Integer.parseInt(row_col.split(" ")[1]);
+
+                if (this.rowCount > 27 || this.colCount > 27) {
+                    file.close();
+                    System.out.println("Maximum number of rows and columns is 27.");
+                    throw new Exception("Maximum number of rows and columns is 27.");
+                }
+                
                 this.map = new String[this.rowCount][this.colCount];
             }
 
