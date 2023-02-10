@@ -4,5 +4,5 @@
 
 Solutions for GreedyGnomes problems (find the shortest path that collects the most gold)
 
-This repo consists of two solutions: Exhaustive Search and Dynamic Programming
+This repo consists of two approaches: Exhaustive Search and Dynamic Programming
 
